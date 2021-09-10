@@ -1,0 +1,6 @@
+version: "3"
+services:
+  do-mercadolibre-api:
+    image: registry.heroku.com/do-mercadolibre-api/web
+    ports:
+      - 8080:8080
