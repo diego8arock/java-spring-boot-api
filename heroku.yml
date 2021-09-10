@@ -1,3 +1,5 @@
 build:
   docker:
     worker: api/Dockerfile
+run:
+  worker: .\api\gradle\ clean build
