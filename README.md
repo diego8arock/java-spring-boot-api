@@ -130,13 +130,11 @@ https://do-mercadolibre-api.herokuapp.com
 
 ## Environment Variables
 
-Define ENV variables
-
-DB_URL=jdbc:postgresql://[db host]:[db port]/[db name]
-DB_USER=[db user]
-DB_PASSWORD=[db password]
-DB_DRIVER=org.postgresql.Driver
-PORT=[server port, default 5656]
+DB_URL=jdbc:postgresql://[db host]:[db port]/[db name]  
+DB_USER=[db user]  
+DB_PASSWORD=[db password]  
+DB_DRIVER=org.postgresql.Driver  
+PORT=[server port, default 5656]  
 
 ## Build API
 
@@ -152,14 +150,14 @@ In api folder
 
 ## Heroku
 
-Create a Heroku API with Heroku Postgres add-on.
+Create a Heroku API with Heroku Postgres add-on.  
 Retrieve the Postgres credentials and add them as [environment variables](#environment-variables) to the app
 
 ### Deploy API to Heroku
 
-docker login -u \_ -p [API KEY] registry.heroku.com (Api Key is found on heroku account settings)
-docker build --file=api/Dockerfile --rm=true -t registry.heroku.com/[APP NAME]/web .
-docker push registry.heroku.com/[APP NAME]/web
+docker login -u \_ -p [API KEY] registry.heroku.com (Api Key is found on heroku account settings)  
+docker build --file=api/Dockerfile --rm=true -t registry.heroku.com/[APP NAME]/web .  
+docker push registry.heroku.com/[APP NAME]/web  
 heroku container:release web -a [APP NAME]
 
 
