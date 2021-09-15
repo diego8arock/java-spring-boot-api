@@ -2,10 +2,12 @@
 
 ## Overview
 
-Service: Restful
-Language: Java
-Framework: Spring Boot
-Database: PostgreSQL
+Service: Restful  
+Language: Java  
+Framework: Spring Boot  
+Database: PostgreSQL  
+
+
 
 ![db shcema](/docs/db-schema.png?raw=true "Db Schema")
 
