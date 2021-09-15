@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "coupons")
@@ -16,6 +17,7 @@ public class CouponDTO {
     private Long id;
     
     @Column(precision=10, scale=2, nullable = false)
+    @NotBlank(message = "Value is mandatory")
     private Double value;
 
     public CouponDTO() {}

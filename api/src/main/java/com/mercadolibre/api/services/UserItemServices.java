@@ -8,6 +8,8 @@ import com.mercadolibre.api.database.UserRepository;
 import com.mercadolibre.api.dtos.ItemDTO;
 import com.mercadolibre.api.dtos.UserDTO;
 import com.mercadolibre.api.dtos.UserItemDTO;
+import com.mercadolibre.api.errors.ItemNotFoundException;
+import com.mercadolibre.api.errors.UserNotFoundException;
 import com.mercadolibre.api.models.FavoritesCount;
 import com.mercadolibre.api.models.UserItem;
 
@@ -32,8 +34,8 @@ public class UserItemServices {
     public UserItemDTO addUserItem(UserItem newUserItem) {
         
         log.debug(newUserItem.toString());
-        UserDTO user = userRepo.findById(newUserItem.getUserId()).get();
-        ItemDTO item = itemRepo.findById(newUserItem.getItemId()).get();
+        UserDTO user = userRepo.findById(newUserItem.getUserId()).orElseThrow(() -> new UserNotFoundException(newUserItem.getUserId()));
+        ItemDTO item = itemRepo.findById(newUserItem.getItemId()).orElseThrow(() -> new ItemNotFoundException(newUserItem.getItemId()));
         UserItemDTO userItem = new UserItemDTO(user, item);
         return repo.save(userItem);
 

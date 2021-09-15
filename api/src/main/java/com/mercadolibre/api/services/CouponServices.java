@@ -8,6 +8,8 @@ import com.mercadolibre.api.database.CouponRepository;
 import com.mercadolibre.api.database.ItemRepository;
 import com.mercadolibre.api.dtos.CouponDTO;
 import com.mercadolibre.api.dtos.ItemDTO;
+import com.mercadolibre.api.errors.CouponNotFoundException;
+import com.mercadolibre.api.errors.ItemNotFoundException;
 import com.mercadolibre.api.models.ItemsCoupon;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +32,17 @@ public class CouponServices {
         return repo.findAll();
     }
 
+    public CouponDTO getCoupon(Long id){
+        return repo.findById(id).orElseThrow(() -> new CouponNotFoundException(id));
+    }
+
     public ItemsCoupon validateCoupon(ItemsCoupon itemsCoupon){
 
         List<ItemDTO> items = new ArrayList<ItemDTO>();
 
         //findById instead of findAllById because of multiple Ids in request
         Consumer<String> lambdaFindById = x -> {
-            ItemDTO i = itemRepo.findById(x).get();
+            ItemDTO i = itemRepo.findById(x).orElseThrow(() -> new ItemNotFoundException(x));
             items.add(i);
         };
 

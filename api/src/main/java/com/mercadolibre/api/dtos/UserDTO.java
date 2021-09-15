@@ -9,6 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+
+
+
 
 @Entity
 @Table(name = "\"users\"")
@@ -18,7 +24,10 @@ public class UserDTO {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq") 
     private Long id;
 
-    @Column(unique = true, nullable = false)  
+    
+    @Column(unique = true, nullable = false) 
+    @NotBlank(message = "Email is mandatory")
+    @Pattern(regexp = "^(.+)@(.+)$", message = "Use a valid email format")
     private String email; 
 
     @OneToMany(mappedBy = "user")
