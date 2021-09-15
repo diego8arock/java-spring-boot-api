@@ -9,6 +9,10 @@ import org.springframework.validation.FieldError;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
 
@@ -26,6 +30,20 @@ public class ValidationAdvice {
             errors.put(fieldName, errorMessage);
         });
         return errors;
-}
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ConstraintViolationException.class) 
+    public Map<String, String> handle(ConstraintViolationException exception) {
+        Map<String, String> errors = new HashMap<>();
+        Set<ConstraintViolation<?>> violations = exception.getConstraintViolations();
+        for (ConstraintViolation<?> violation : violations) {
+            String fieldName = violation.getPropertyPath().toString();
+            String errorMessage = violation.getMessage();
+            errors.put(fieldName, errorMessage);
+        }
+        return errors;
+    }
     
 }
