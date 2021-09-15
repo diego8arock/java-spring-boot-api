@@ -150,7 +150,7 @@ In api folder
 
 ## Heroku
 
-Create a Heroku API with Heroku Postgres add-on.  
+Create a Heroku App with Heroku Postgres add-on.  
 Retrieve the Postgres credentials and add them as [environment variables](#environment-variables) to the app
 
 ### Deploy API to Heroku
