@@ -23,7 +23,7 @@ public class ItemController {
 
     @PostMapping("/items")
     ItemDTO newItem(@RequestBody @Valid ItemDTO newItem){        
-        return services.newItem(new ItemDTO(newItem.getId(), newItem.getPrice()));
+        return services.newItem(newItem);
     }
 
     @PostMapping("/items/list")
