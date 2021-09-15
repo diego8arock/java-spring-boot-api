@@ -55,7 +55,7 @@ public class UserController {
         return ResponseEntity.ok(String.format("Item id %s was added to favorites by user id %s", newUserItemDTO.getItemId(), newUserItemDTO.getUserId())); 
     }
 
-    @PostMapping("/user/favorite/remove/{id}") 
+    @DeleteMapping("/user/favorite/remove/{id}") 
     ResponseEntity<String> removeFavorite(@PathVariable Long id) {
         userItemServices.deleteUserItem(id);
         return ResponseEntity.ok(String.format("Favorite id %s wad removed", id)); 
