@@ -23,7 +23,6 @@ public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq") 
     private Long id;
-
     
     @Column(unique = true, nullable = false) 
     @NotBlank(message = "Email is mandatory")
