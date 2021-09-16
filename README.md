@@ -158,7 +158,13 @@ Retrieve the Postgres credentials and add them as [environment variables](#envir
 docker login -u \_ -p [API KEY] registry.heroku.com (Api Key is found on heroku account settings)  
 docker build --file=api/Dockerfile --rm=true -t registry.heroku.com/[APP NAME]/web .  
 docker push registry.heroku.com/[APP NAME]/web  
-heroku container:release web -a [APP NAME]
+heroku container:release web -a [APP NAME]  
+
+## Performance Tests
+
+Performance tests where made using Apache Jmeter.  
+About 1666 request per minute were performed.  
+Results can be found in [jmeter](/jmeter) folder  
 
 
 
