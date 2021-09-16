@@ -14,6 +14,8 @@ import com.mercadolibre.api.models.FavoritesCount;
 import com.mercadolibre.api.models.UserItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
@@ -41,8 +43,12 @@ public class UserItemServices {
 
     }
 
-    public void deleteUserItem(Long id) {
-        repo.deleteById(id);
+    public void deleteUserItem(UserItem oldUserItem) {
+
+        UserDTO user = userRepo.findById(oldUserItem.getUserId()).orElseThrow(() -> new UserNotFoundException(oldUserItem.getUserId()));
+        ItemDTO item = itemRepo.findById(oldUserItem.getItemId()).orElseThrow(() -> new ItemNotFoundException(oldUserItem.getItemId()));
+        UserItemDTO userItem = new UserItemDTO(user, item);
+        repo.delete(userItem);
     }
 
     public List<FavoritesCount> getFavoritesStats() {

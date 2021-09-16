@@ -38,15 +38,8 @@ public class CouponServices {
 
     public ItemsCoupon validateCoupon(ItemsCoupon itemsCoupon){
 
-        List<ItemDTO> items = new ArrayList<ItemDTO>();
-
-        //findById instead of findAllById because of multiple Ids in request
-        Consumer<String> lambdaFindById = x -> {
-            ItemDTO i = itemRepo.findById(x).orElseThrow(() -> new ItemNotFoundException(x));
-            items.add(i);
-        };
-
-        itemsCoupon.getItem_ids().forEach(lambdaFindById);
+        //use findAllById to eliminate duplicated item ids
+        List<ItemDTO> items = itemRepo.findAllById(itemsCoupon.getItem_ids());
         items.sort((i1,i2)-> i1.getPrice().compareTo(i2.getPrice()));
 
         ItemsCoupon result = new ItemsCoupon();

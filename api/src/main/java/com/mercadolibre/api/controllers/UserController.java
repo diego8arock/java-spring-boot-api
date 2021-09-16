@@ -55,10 +55,10 @@ public class UserController {
         return ResponseEntity.ok(String.format("Item id %s was added to favorites by user id %s", newUserItemDTO.getItemId(), newUserItemDTO.getUserId())); 
     }
 
-    @DeleteMapping("/user/favorite/remove/{id}") 
-    ResponseEntity<String> removeFavorite(@PathVariable Long id) {
-        userItemServices.deleteUserItem(id);
-        return ResponseEntity.ok(String.format("Favorite id %s wad removed", id)); 
+    @DeleteMapping("/user/favorite/remove") 
+    ResponseEntity<String> removeFavorite(@RequestBody @Valid UserItem oldUserItemDTO) {
+        userItemServices.deleteUserItem(oldUserItemDTO);
+        return ResponseEntity.ok(String.format("Favorite id %s from user id %s was removed", oldUserItemDTO.getItemId(), oldUserItemDTO.getUserId())); 
     }
     
 }

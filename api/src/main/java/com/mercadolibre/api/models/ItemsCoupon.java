@@ -3,14 +3,15 @@ package com.mercadolibre.api.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class ItemsCoupon {
 
-    @NotBlank(message = "Items Ids is mandatory")
+    @NotEmpty(message = "Items Ids is mandatory")
     private List<String> item_ids;
     
-    @NotBlank(message = "Amount is mandatory")
+    @NotNull(message = "Amount is mandatory")
     private Double amount;
 
     public ItemsCoupon(){

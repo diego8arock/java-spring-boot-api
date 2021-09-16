@@ -1,13 +1,14 @@
 package com.mercadolibre.api.models;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class UserItem {
     
     @NotBlank(message = "Item Id is mandatory")
     private String itemId;
 
-    @NotBlank(message = "User Id is mandatory")
+    @NotNull(message = "User Id is mandatory")
     private Long userId;
 
     public UserItem() { }
